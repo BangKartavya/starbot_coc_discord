@@ -1,0 +1,6 @@
+{"status": {"code": 0, "message": "ok", "detail": "None"
+    }, "sessionExpiresInSeconds": 3598, "key": {"id": "8e9b7f2a-d151-4850-9bc5-f1ec4b2acc4b", "developerId": "7206b48e-27ec-0831-190c-a9c239a19a16", "tier": "developer/silver", "name": "new day new key", "description": "new day new key", "origins": "None", "scopes": ["clash"
+        ], "cidrRanges": ["49.43.41.183"
+        ], "validUntil": "None", "key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjhlOWI3ZjJhLWQxNTEtNDg1MC05YmM1LWYxZWM0YjJhY2M0YiIsImlhdCI6MTcxOTU5MDUyMSwic3ViIjoiZGV2ZWxvcGVyLzcyMDZiNDhlLTI3ZWMtMDgzMS0xOTBjLWE5YzIzOWExOWExNiIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQ5LjQzLjQxLjE4MyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.BKOikumzaZB71dYwzb8rK1snudCOxDz-ULZM-rHA6KuGGlloIz7THm7ztzcnEhKDAFVvZxit0teHepL0K6mcsg"
+    }
+}
