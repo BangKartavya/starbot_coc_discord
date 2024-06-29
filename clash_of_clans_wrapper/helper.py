@@ -110,7 +110,7 @@ class Language:
         self.name = j['name']
         self.languageCode = j['languageCode']
 
-class District:
+class ClanInfoDistrict:
     def __init__(self,j):
         self.id = j['id']
         self.name = j['name']
@@ -119,7 +119,7 @@ class District:
 class ClanCapital:
     def __init__(self,j):
         self.capitalHallLevel = j['capitalHallLevel']
-        self.districts = [District(i) for i in j['districts']]
+        self.districts = [ClanInfoDistrict(i) for i in j['districts']]
 
 class ClanMember:
     def __init__(self,j):
