@@ -41,7 +41,10 @@ class Player:
             # self.league = League(self.j['league'])
             self.builderBaseLeague = BuilderBaseLeague(self.j['builderBaseLeague'])
             self.achievements = self.get_achievements()
-            self.playerHouse = self.get_player_house()
+            try:
+                self.playerHouse = self.get_player_house()
+            except KeyError:
+                self.playerHouse = []
             self.labels = self.get_labels()
             self.troops = self.get_troops()
             self.heros = self.get_heros()
