@@ -8,7 +8,7 @@ class Misc(commands.Cog):
 
     @commands.command()
     async def ping(self,ctx:commands.Context):
-        await ctx.reply(round(self.client.latency*1000))
+        await ctx.reply(f"{round(self.client.latency*1000)}ms")
 
     
 

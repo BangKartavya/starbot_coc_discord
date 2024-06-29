@@ -24,7 +24,7 @@ class Listeners(commands.Cog):
         elif isinstance(error,helper_error.AttackerNotFound):
             await ctx.reply(error.args[0])
         else:
-            raise error
+            await ctx.reply(error.args[0])
 
 
 def setup(client):
