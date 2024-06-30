@@ -24,7 +24,6 @@ if not token:
 logout(log)
 
 
-
 os.environ['COC_API_KEY'] = token
 
 dotenv.set_key(dotenv_file,'COC_API_KEY',os.environ['COC_API_KEY'])

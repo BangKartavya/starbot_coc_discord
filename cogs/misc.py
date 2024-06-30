@@ -6,7 +6,7 @@ class Misc(commands.Cog):
         self.client = client
     
 
-    @commands.command()
+    @commands.command(description = "Get the latency of the bot")
     async def ping(self,ctx:commands.Context):
         await ctx.reply(f"{round(self.client.latency*1000)}ms")
 

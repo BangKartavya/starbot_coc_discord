@@ -1,16 +1,18 @@
 import discord
 from discord.ext import commands
 from clash_of_clans_wrapper.player import Player
-from discord.ext.pages import Paginator,PaginatorButton,PaginatorMenu,PageGroup,Page
+from discord.ext.pages import Paginator,Page
 
 class Player_Cmds(commands.Cog):
     def __init__(self,client):
         self.client: commands.Bot = client
     
 
-    @commands.command(name = 'pinfo')
-    async def player_info(self,ctx:commands.Context,tag = 'QU0LRPGP2'):
-        player = Player(tag)
+    @commands.command(aliases = ['pinfo'],description = "Get information about a player using their tag")
+    async def player_info(self,ctx:commands.Context,player_tag = 'QU0LRPGP2'):
+        if player_tag[0] == "#":
+            player_tag = player_tag[1:]
+        player = Player(player_tag)
         embed = discord.Embed(title="Player Info",color=discord.Color.red())
         embed.add_field(name="**Name**", value=player.name)
         embed.add_field(name="**Town Hall**", value=player.townHallLevel)
@@ -30,13 +32,15 @@ class Player_Cmds(commands.Cog):
         embed.add_field(name="**Builder Base League**", value=player.builderBaseLeague.name)
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def troops(self,ctx:commands.Context,tag = 'QU0LRPGP2'):
+    @commands.command(aliases = ['tr'],description = "Get info about player's troops")
+    async def troops(self,ctx:commands.Context,player_tag = 'QU0LRPGP2'):
         my_pages = []
-        player = Player(tag)
+        if player_tag[0] == "#":
+            player_tag = player_tag[1:]
+        player = Player(player_tag)
 
         for i in player.troops:
-            embed = discord.Embed(title=f"Info about {i.name}",color = discord.Color.random())
+            embed = discord.Embed(title=f"Info about {player.name}'s Troops - {i.name}",color = discord.Color.random())
             embed.add_field(name = "Name", value = i.name,inline=False)
             embed.add_field(name = "Current Level", value = i.level,inline=False)
             embed.add_field(name = "Max Level", value = i.maxLevel,inline=False)
@@ -47,14 +51,16 @@ class Player_Cmds(commands.Cog):
         paginator = Paginator(pages=my_pages)
         await paginator.send(ctx)
     
-    @commands.command()
-    async def heros(self,ctx:commands.Context,tag = 'QU0LRPGP2'):
-        embed = discord.Embed(title="Player Hero Information",color=discord.Color.blue())
-        player = Player(tag)
+    @commands.command(aliases = ['he'],description = "Get info about player's heros")
+    async def heros(self,ctx:commands.Context,player_tag = 'QU0LRPGP2'):
+        if player_tag[0] == "#":
+            player_tag = player_tag[1:]
+
+        player = Player(player_tag)
         my_pages = []
 
         for i in player.heros:
-            embed = discord.Embed(title=f"Info about {i.name}",color = discord.Color.random())
+            embed = discord.Embed(title=f"Info about {player.name}'s Heros - {i.name}",color = discord.Color.random())
             embed.add_field(name = "Name", value = i.name,inline=False)
             embed.add_field(name = "Current Level", value = i.level,inline=False)
             embed.add_field(name = "Max Level", value = i.maxLevel,inline=False)
@@ -66,13 +72,15 @@ class Player_Cmds(commands.Cog):
         paginator = Paginator(pages=my_pages)
         await paginator.send(ctx)
 
-    @commands.command()
-    async def equipment(self,ctx:commands.Context,tag = 'QU0LRPGP2'):
-        player = Player(tag)
+    @commands.command(aliases = ['equ'],description = "Get info about player's hero equipments")
+    async def equipment(self,ctx:commands.Context,player_tag = 'QU0LRPGP2'):
+        if player_tag[0] == "#":
+            player_tag = player_tag[1:]
+        player = Player(player_tag)
         my_pages = []
 
         for i in player.heroEquipment:
-            embed = discord.Embed(title=f"Info about {i.name}",color = discord.Color.random())
+            embed = discord.Embed(title=f"Info about {player.name}'s Hero Equipment - {i.name}",color = discord.Color.random())
             embed.add_field(name = "Name", value = i.name,inline=False)
             embed.add_field(name = "Current Level", value = i.level,inline=False)
             embed.add_field(name = "Max Level", value = i.maxLevel,inline=False)

@@ -10,10 +10,11 @@ class ClanInfo(commands.Cog):
     def __init__(self,client):
         self.client: commands.Bot = client
 
-
-    @commands.command(name = 'cinfo')
-    async def clan_info(self,ctx:commands.Context,tag = '2G9LG9VCY'):
-        clan = Clan(tag)
+    @commands.command(aliases = ['cinfo'],description = "Gets info about a clan with the clan tag")
+    async def clan_info(self,ctx:commands.Context,clan_tag = '2G9LG9VCY'):
+        if clan_tag[0] == '#':
+            clan_tag = clan_tag[1:]
+        clan = Clan(clan_tag)
 
         embed = discord.Embed(title=f'Info about {clan.name}',color= discord.Color.random())
         embed.add_field(name="Name",value=clan.name)
@@ -39,9 +40,12 @@ class ClanInfo(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command(name = 'minfo')
-    async def member_info(self,ctx:commands.Context,tag = '2G9LG9VCY'):
-        clan = Clan(tag)
+    @commands.command(aliases = ['minfo'],description = "Get info about all the clan members with the clan tag")
+    async def member_info(self,ctx:commands.Context,clan_tag = '2G9LG9VCY'):
+        if clan_tag[0] == '#':
+            clan_tag = clan_tag[1:]
+
+        clan = Clan(clan_tag)
         my_pages = []
         for mem in clan.memberList:
             embed = discord.Embed(title="Members",color=discord.Color.random())
@@ -63,13 +67,42 @@ class ClanInfo(commands.Cog):
         paginator = Paginator(pages=my_pages)
         await paginator.send(ctx)
 
+    @commands.command(alises = ['warlog'],description = "Get a clan's warlog with the tag and a limit of how many wars to show")
+    async def clan_war_log(self,ctx:commands.Context,clan_tag = '2RCPQOLLQ',limit: int = 2):
+        if clan_tag[0] == '#':
+            clan_tag = clan_tag[1:]
+        my_pages = []
+        clan = WarLogList(clan_tag,limit)
+
+        for war_log_item in clan.warLog:
+            embed = discord.Embed(title="Warlog",color=discord.Color.random())
+            embed.add_field(name='Result',value=war_log_item.result)
+            embed.add_field(name='End Time',value=war_log_item.endTime)
+            embed.add_field(name='Team Size',value=war_log_item.teamSize)
+            embed.add_field(name='Attacks per Member',value=war_log_item.attacksPerMember,inline=False)
+            embed.add_field(name='Clan Attacks',value=war_log_item.clan.attacks)
+            embed.add_field(name='Clan Stars Earned',value=war_log_item.clan.stars)
+            embed.add_field(name='Clan Destruction Percentage',value=war_log_item.clan.destructionPercentage)
+            embed.add_field(name='Clan EXP Earned',value=war_log_item.clan.expEarned,inline=False)
+            embed.add_field(name='Opponent Tag',value=war_log_item.opponent.tag)
+            embed.add_field(name='Opponent Name',value=war_log_item.opponent.name)
+            embed.add_field(name='Opponent Clan Level',value=war_log_item.opponent.clanLevel)
+            embed.add_field(name='Opponent Stars Earned',value=war_log_item.opponent.stars)
+            embed.add_field(name='Opponent Destruction Percentage',value=war_log_item.opponent.destructionPercentage)
+            my_pages.append(Page(embeds=[embed]))
+        
+        paginator = Paginator(pages=my_pages)
+        await paginator.send(ctx)
+
 class ClanCapitalInfo(commands.Cog):
     def __init__(self,client):
         self.client: commands.Bot = client
 
-    @commands.command(name = 'capinfo')
-    async def capital_info(self,ctx:commands.Context,tag = '2G9LG9VCY',limit:int = 2):
-        capital_raid_list = CapitalRaidList(tag,limit)
+    @commands.command(aliases = ['capinfo'],description = "Get the clan capital raid information of a clan")
+    async def capital_info(self,ctx:commands.Context,clan_tag = '2G9LG9VCY',limit:int = 2):
+        if clan_tag[0] == '#':
+            clan_tag = clan_tag[1:]
+        capital_raid_list = CapitalRaidList(clan_tag,limit)
         my_pages = []
 
         for i in capital_raid_list.capitalRaids:
@@ -88,9 +121,11 @@ class ClanCapitalInfo(commands.Cog):
         paginator = Paginator(pages=my_pages)
         await paginator.send(ctx)
 
-    @commands.command(name = 'attlog')
-    async def attack_log(self,ctx:commands.Context,tag = '2G9LG9VCY',limit:int = 2):
-        capital_raid_list = CapitalRaidList(tag,limit)
+    @commands.command(aliases = ['attlog'],description = "Get attack log of the raid weekend")
+    async def attack_log(self,ctx:commands.Context,clan_tag = '2G9LG9VCY',limit:int = 2):
+        if clan_tag[0] == '#':
+            clan_tag = clan_tag[1:]
+        capital_raid_list = CapitalRaidList(clan_tag,limit)
         my_pages = []
 
         for i in capital_raid_list.capitalRaids:
@@ -108,8 +143,10 @@ class ClanCapitalInfo(commands.Cog):
 
         await paginator.send(ctx)
     
-    @commands.command(name = 'pattlog') 
+    @commands.command(aliases = ['pattlog'],description = "Get player specific attack log in raid weekend") 
     async def player_attack_log(self,ctx:commands.Context,clan_tag = '2G9LG9VCY',player_tag = 'QU0LRPGP2',limit: int = 2):
+        if clan_tag[0] == '#':
+            clan_tag = clan_tag[1:]
         capital_raid_list = CapitalRaidList(clan_tag,limit)
         my_pages = []
 
@@ -133,30 +170,7 @@ class ClanCapitalInfo(commands.Cog):
             paginator = Paginator(pages=my_pages)
             await paginator.send(ctx)
 
-    @commands.command(name = 'warlog')
-    async def clan_war_log(self,ctx:commands.Context,clan_tag = '2RCPQOLLQ',limit: int = 2):
-        my_pages = []
-        clan = WarLogList(clan_tag,limit)
-
-        for war_log_item in clan.warLog:
-            embed = discord.Embed(title="Warlog",color=discord.Color.random())
-            embed.add_field(name='Result',value=war_log_item.result)
-            embed.add_field(name='End Time',value=war_log_item.endTime)
-            embed.add_field(name='Team Size',value=war_log_item.teamSize)
-            embed.add_field(name='Attacks per Member',value=war_log_item.attacksPerMember,inline=False)
-            embed.add_field(name='Clan Attacks',value=war_log_item.clan.attacks)
-            embed.add_field(name='Clan Stars Earned',value=war_log_item.clan.stars)
-            embed.add_field(name='Clan Destruction Percentage',value=war_log_item.clan.destructionPercentage)
-            embed.add_field(name='Clan EXP Earned',value=war_log_item.clan.expEarned,inline=False)
-            embed.add_field(name='Opponent Tag',value=war_log_item.opponent.tag)
-            embed.add_field(name='Opponent Name',value=war_log_item.opponent.name)
-            embed.add_field(name='Opponent Clan Level',value=war_log_item.opponent.clanLevel)
-            embed.add_field(name='Opponent Stars Earned',value=war_log_item.opponent.stars)
-            embed.add_field(name='Opponent Destruction Percentage',value=war_log_item.opponent.destructionPercentage)
-            my_pages.append(Page(embeds=[embed]))
-        
-        paginator = Paginator(pages=my_pages)
-        await paginator.send(ctx)
+    
 
 def setup(client:commands.Bot):
     client.add_cog(ClanInfo(client))
