@@ -32,7 +32,7 @@ py-cord==2.5.0
 PyJWT==2.8.0
 python-dotenv==1.0.1
 Quart==0.19.6
-Quart-Discord==2.1.4
+Quart-Discord @ git+https://github.com/BangKartavya/Quart-Discord.git@3404e64ef72163733e768e7e8cd66885d256344b
 requests==2.32.3
 setuptools==70.2.0
 soupsieve==2.5
