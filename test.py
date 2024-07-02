@@ -4,7 +4,7 @@ import dotenv
 import os
 from cogs.help import MyHelp
 from dynamic_token_gen.main import *
-from keep_alive import keep_alive
+from keep_alive_test import keep_alive
 
 keep_alive()
 dotenv_file = dotenv.find_dotenv()
@@ -12,6 +12,8 @@ dotenv.load_dotenv()
 
 email = os.getenv('email')
 password = os.getenv('password')
+
+
 
 log = login(email,password)
 ip = load(log).json()['developer']['prevLoginIp']
@@ -43,4 +45,5 @@ client.load_extension('cogs.misc')
 client.help_command = MyHelp()
 
 if __name__ == "__main__":
+    # app.run(debug=True)
     client.run('NzA0Mzg5Mjg4OTU1MDg0ODQx.GdoY31.xz_7F9Chm124VQKHEF8f5zajzn5UHIwmJsfhMk')
