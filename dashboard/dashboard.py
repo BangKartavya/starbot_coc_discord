@@ -7,18 +7,19 @@ from clash_of_clans_wrapper.clan import Clan
 dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv(dotenv_file)
 
-# discord_client_id = os.getenv("DISCORD_CLIENT_ID")
-# discord_client_secret = os.getenv("DISCORD_CLIENT_SECRET")
-# discord_redirect_uri = os.getenv("DISCORD_REDIRECT_URI")
-# discord_bot_token = os.getenv("BOT_API_KEY")
-
+discord_client_id = os.getenv("DISCORD_CLIENT_ID")
+discord_client_secret = os.getenv("DISCORD_CLIENT_SECRET")
+discord_redirect_uri = os.getenv("DISCORD_REDIRECT_URI")
+discord_bot_token = os.getenv("BOT_API_KEY")
+app_secret_key = os.getenv("APP_SECRET_KEY")
 
 app = Quart(__name__)
-app.secret_key = b"abcd1234"
-app.config["DISCORD_CLIENT_ID"] = 704389288955084841    
-app.config["DISCORD_CLIENT_SECRET"] = "EHNs9kcU9cG4BP2OU7v3Pdi1bJt8QmWL"
-app.config["DISCORD_REDIRECT_URI"] = "http://127.0.0.1:5000/callback"                  
-app.config["DISCORD_BOT_TOKEN"] = "NzA0Mzg5Mjg4OTU1MDg0ODQx.GdoY31.xz_7F9Chm124VQKHEF8f5zajzn5UHIwmJsfhMk"
+
+app.secret_key = app_secret_key.encode('utf-8')
+app.config["DISCORD_CLIENT_ID"] = discord_client_id    
+app.config["DISCORD_CLIENT_SECRET"] = discord_client_secret
+app.config["DISCORD_REDIRECT_URI"] = discord_redirect_uri
+app.config["DISCORD_BOT_TOKEN"] = discord_bot_token
 
 discord = DiscordOAuth2Session(app)
  
