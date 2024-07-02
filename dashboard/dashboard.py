@@ -14,7 +14,6 @@ discord_bot_token = os.getenv("BOT_API_KEY")
 app_secret_key = os.getenv("APP_SECRET_KEY")
 
 app = Quart(__name__)
-
 app.secret_key = app_secret_key.encode('utf-8')
 app.config["DISCORD_CLIENT_ID"] = discord_client_id    
 app.config["DISCORD_CLIENT_SECRET"] = discord_client_secret
