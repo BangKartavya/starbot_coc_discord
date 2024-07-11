@@ -1,5 +1,5 @@
 from dashboard.dashboard import app
-from threading import Thread
+import asyncio
 
-def keep_alive():   
+def run():   
     app.run()
