@@ -4,9 +4,9 @@ import dotenv
 import os
 from cogs.help import MyHelp
 from dynamic_token_gen.main import *
-from keep_alive_test import run
+from keep_alive_test import keep_alive
 
-run()
+keep_alive()
 dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv()
 
