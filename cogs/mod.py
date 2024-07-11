@@ -63,5 +63,7 @@ class Moderation(commands.Cog):
 
         dotenv.set_key(dotenv_file,'COC_API_KEY',os.environ['COC_API_KEY'])
 
+        await ctx.send("API KEY GENERATED")
+
 def setup(client:commands.Bot):
     client.add_cog(Moderation(client))
