@@ -23,6 +23,7 @@ idna==3.7
 imageio-ffmpeg==0.5.1
 itsdangerous==2.2.0
 Jinja2==3.1.4
+mangum==0.17.0
 MarkupSafe==2.1.5
 multidict==6.0.5
 numpy==2.0.0
@@ -36,6 +37,7 @@ Quart-Discord @ git+https://github.com/BangKartavya/Quart-Discord.git@3404e64ef7
 requests==2.32.3
 setuptools==70.2.0
 soupsieve==2.5
+typing_extensions==4.12.2
 urllib3==2.2.2
 Werkzeug==3.0.3
 wsproto==1.2.0
