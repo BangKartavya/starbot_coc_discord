@@ -18,7 +18,7 @@ ip = load(log).json()['developer']['prevLoginIp']
 token = get_key_with_ip(log,ip)
 
 if not token:
-    remove_keys(log)
+    remove_key_with_name(log,'key')
     token = create_key(log,'key','key',ip)
 
 logout(log)

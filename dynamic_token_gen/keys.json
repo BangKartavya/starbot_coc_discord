@@ -1,0 +1,42 @@
+{
+    "status": {
+        "code": 0,
+        "message": "ok",
+        "detail": "None"
+    },
+    "sessionExpiresInSeconds": 3598,
+    "keys": [
+        {
+            "id": "c3a2e54f-50e4-45b8-a08a-ccfdb6d448c3",
+            "developerId": "7206b48e-27ec-0831-190c-a9c239a19a16",
+            "tier": "developer/silver",
+            "name": "key",
+            "description": "key",
+            "origins": "None",
+            "scopes": [
+                "clash"
+            ],
+            "cidrRanges": [
+                "34.211.200.85"
+            ],
+            "validUntil": "None",
+            "key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImMzYTJlNTRmLTUwZTQtNDViOC1hMDhhLWNjZmRiNmQ0NDhjMyIsImlhdCI6MTcyMDc2Njc5Niwic3ViIjoiZGV2ZWxvcGVyLzcyMDZiNDhlLTI3ZWMtMDgzMS0xOTBjLWE5YzIzOWExOWExNiIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjM0LjIxMS4yMDAuODUiXSwidHlwZSI6ImNsaWVudCJ9XX0.5ZZNk5E0XQcUwLFsBNrijwK6UnpEFrcfKj4AnrzZ3Xgaj9LS7awD_Z0fZjja_JaG5sf_4MN8ktnLu9BDJKw8Uw"
+        },
+        {
+            "id": "23552f35-2028-497d-ae05-457608b9725d",
+            "developerId": "7206b48e-27ec-0831-190c-a9c239a19a16",
+            "tier": "developer/silver",
+            "name": "test",
+            "description": "test",
+            "origins": "None",
+            "scopes": [
+                "clash"
+            ],
+            "cidrRanges": [
+                "49.43.40.213"
+            ],
+            "validUntil": "None",
+            "key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjIzNTUyZjM1LTIwMjgtNDk3ZC1hZTA1LTQ1NzYwOGI5NzI1ZCIsImlhdCI6MTcyMDc5MDIxOCwic3ViIjoiZGV2ZWxvcGVyLzcyMDZiNDhlLTI3ZWMtMDgzMS0xOTBjLWE5YzIzOWExOWExNiIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQ5LjQzLjQwLjIxMyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.Rn6sqGQwMhWnt5DZC1oknVmpBKxARweSckgQ2_O2eYNgyaatc6HKNgJ5P_ORj5kYBU7QRbM8j0bEuipReH5dFw"
+        }
+    ]
+}
