@@ -90,6 +90,25 @@ class Player_Cmds(commands.Cog):
 
         paginator = Paginator(pages=my_pages)
         await paginator.send(ctx)
+    @commands.command(aliases = ['sp'],description = "Get info about player's spells")
+    async def spells(self,ctx:commands.Context,player_tag = 'QU0LRPGP2'):
+        if player_tag[0] == '#':
+            player_tag = player_tag[1:]
+        
+        player = Player(player_tag)
+        my_pages = []
+
+        for i in player.spells:
+            embed = discord.Embed(title=f"Info about {player.name}'s Spells - {i.name}",color=discord.Color.random())
+            embed.add_field(name="Name",value=i.name,inline=False)
+            embed.add_field(name="Level",value=i.level,inline=False)
+            embed.add_field(name="Max Level",value=i.maxLevel,inline=False)
+            embed.add_field(name="VIllage",value=i.village,inline=False)
+            my_pages.append(Page(embeds=[embed]))
+        
+        paginator = Paginator(pages=my_pages)
+
+        await paginator.send(ctx)
 
 
 def setup(client):
