@@ -42,25 +42,59 @@ async def player():
 
 @app.route("/player/<string:player_tag>")
 async def player_info(player_tag = 'QU0LRPGP2'):
+
+    return await render_template('player_info/player.html')
+
+@app.route('/player/<string:player_tag>/troops')
+async def player_troop_info(player_tag = 'QU0LRPGP2'):
     player = Player(player_tag)
-    data = {
-        "Player Name" : player.name,
-        "Player Tag" : player.tag,
-        "Player Town Hall Level" : player.townHallLevel,
-        "Player Exp Level" : player.expLevel,
-        "Player Trophies" : player.trophies,
-        "Player Best Trophies" : player.bestTrophies,
-        "Player War Stars" : player.warStars,
-        "Player Attack Wins" : player.attackWins,
-        "Player Defense Wins" : player.defenseWins,
-        "Player Builder Hall Level" : player.builderHallLevel,
-        "Player Best Builder Base Trophies" : player.bestBuilderBaseTrophies,
-        "Player Role" : player.role,
-        "Player War Preference" : player.warPreference,
-        "Player Donations" : player.donations,
-        "Player Clan Capital Contributions" : player.clanCapitalContributions
-    }
-    return await render_template('player_info/success.html',player_info = data)
+
+    troops = []
+
+    for i in player.troops:
+        troops.append({"name":i.name,"level":i.level,"maxLevel":i.maxLevel,"village":i.village})
+
+
+
+    return await render_template('player_info/troops.html',troops = troops)
+
+@app.route('/player/<string:player_tag>/spells')
+async def player_spell_info(player_tag = 'QU0LRPGP2'):
+    player = Player(player_tag)
+
+    spells = []
+
+    for i in player.spells:
+        spells.append({"name":i.name,"level":i.level,"maxLevel":i.maxLevel,"village":i.village})
+
+
+
+    return await render_template('player_info/spells.html',spells = spells)
+
+
+@app.route('/player/<string:player_tag>/achievements')
+async def player_achievement_info(player_tag = 'QU0LRPGP2'):
+    player = Player(player_tag)
+
+    achievements = []
+
+    for i in player.achievements:
+
+        data = {
+            "name":i.name,
+            "info":i.info,
+            "completionInfo":i.completionInfo,
+            "stars":i.stars,
+            "target":i.target,
+            "value":i.value,
+            "village":i.village
+        }
+
+        achievements.append(data)
+
+
+
+    return await render_template('player_info/achievements.html',achievements = achievements)
 
 @app.route('/clan/')
 async def clan():

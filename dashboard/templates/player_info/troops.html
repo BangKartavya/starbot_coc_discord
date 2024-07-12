@@ -41,15 +41,19 @@
   <table class="table table-striped table-dark">
     <thead>
       <tr>
-        <th scope="col">Attribute</th>
-        <th scope="col">Value</th>
+        <th scope="col">Name</th>
+        <th scope="col">Level</th>
+        <th scope="col">Max Level</th>
+        <th scope="col">Village</th>
       </tr>
     </thead>
     <tbody>
-      {% for key,value in player_info.items() %}
+      {% for troop in troops %}
       <tr>
-      <td>{{ key }}</td>
-      <td>{{ value }}</td>
+      <td>{{ troop.name }}</td>
+      <td>{{ troop.level }}</td>
+      <td>{{ troop.maxLevel }}</td>
+      <td>{{ troop.village }}</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -2,3 +2,4 @@
 test.py
 example jsons/
 keep_alive_test.py
+dashboard/dashboard_test.py
