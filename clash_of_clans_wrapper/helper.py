@@ -166,7 +166,7 @@ class Leagues:
         self.limit = limit
         headers = {"Authorization" : f"Bearer {token} "}
         r = requests.get(url=f'https://api.clashofclans.com/v1/leagues?limit={self.limit}',headers=headers)
-        self.j = r.json()
+        self.j = r.json()   
         self.items = [League(i) for i in self.j['items']]
 
 class CapitalLeagues:
@@ -280,5 +280,37 @@ class WarLogItem:
         self.battleModifier: str = j['battleModifier']
         self.clan = WarClan(j['clan'])
         self.opponent = WarClan(j['opponent'])
+
+class PlayerRankingClan:
+    def __init__(self,j):
+        self.tag = j['tag']
+        self.name = j['name']
+        try:
+            self.badge_url_small = j['badgeUrl']['small']
+        except KeyError:
+            self.badge_url_small = None
+        try:
+            self.badge_url_large = j['badgeUrl']['large']
+        except KeyError:
+            self.badge_url_large = None
+        try:
+
+            self.badge_url_medium = j['badgeUrl']['medium']
+        except KeyError:
+            self.badge_url_medium = None
+
+class PlayerRanking:
+    def __init__(self,j):
+        self.league = League(j['league'])
+        self.clan = PlayerRankingClan(j['clan'])
+        self.attackWins = j['attackWins']
+        self.defenseWins = j['defenseWins']
+        self.tag = j['tag']
+        self.name = j['name']
+        self.expLevel = j['expLevel']
+        self.rank = j['rank']
+        self.previousRank = j['previousRank']
+        self.trophies = j['trophies']
+
 
 
