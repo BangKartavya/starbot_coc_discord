@@ -153,10 +153,13 @@ class CapitalLeague:
 
 class Location:
     def __init__(self,j):
-        self.id = j['id']
-        self.name = j['name']
-        self.isCountry = j['isCountry']
-        self.countryCode = j['countryCode']
+        self.id: int = j['id']
+        self.name: str = j['name']
+        self.isCountry: bool = j['isCountry']
+        if self.isCountry:
+            self.countryCode: str = j['countryCode']
+        else:
+            self.countryCode = None
 
 class Leagues:
     def __init__(self,limit):
@@ -164,7 +167,6 @@ class Leagues:
         headers = {"Authorization" : f"Bearer {token} "}
         r = requests.get(url=f'https://api.clashofclans.com/v1/leagues?limit={self.limit}',headers=headers)
         self.j = r.json()
-        print(self.j)
         self.items = [League(i) for i in self.j['items']]
 
 class CapitalLeagues:

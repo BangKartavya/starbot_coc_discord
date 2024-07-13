@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 from clash_of_clans_wrapper.player import Player
+from clash_of_clans_wrapper.rankings import PlayerRankingList
+from clash_of_clans_wrapper.locations import Locations
 from discord.ext.pages import Paginator,Page
 
 class Player_Cmds(commands.Cog):
@@ -110,6 +112,37 @@ class Player_Cmds(commands.Cog):
 
         await paginator.send(ctx)
 
+    @commands.command(aliases = ['toprank'],description = "Get info about the top ranking players in a location")
+    async def top_ranking(self,ctx:commands.Context,locationId: int = 32000008,limit:int = 2):
+        locations = Locations()
+        location = None
+        for i in locations.locations:
+            if i.id == locationId:
+                location = i
+                break
+        if not location:
+            await ctx.reply("You provided a wrong location ID. Check the id and try again")
+            return
+        rank_list = PlayerRankingList(locationId,limit)
+        my_pages = []
+        for i in rank_list.rankingList:
+            embed = discord.Embed(title = f"Ranking List for Location - {location.name}",color=discord.Color.random())
+            embed.add_field(name = 'Tag',value = i.tag,inline=False)
+            embed.add_field(name = 'Name',value = i.name,inline=False)
+            embed.add_field(name = 'Exp Level',value = i.expLevel,inline=False)
+            embed.add_field(name = 'Trophies',value = i.trophies,inline=False)
+            embed.add_field(name = 'Attack Wins',value = i.attackWins,inline=False)
+            embed.add_field(name = 'Defense Wins',value = i.defenseWins,inline=False)
+            embed.add_field(name = 'Rank',value = i.rank,inline=False)
+            embed.add_field(name = 'Previous Rank',value = i.previousRank,inline=False)
+            embed.add_field(name = 'Clan Tag',value = i.clan.tag,inline=False)
+            embed.add_field(name = 'Clan Name',value = i.clan.name,inline=False)
+            embed.add_field(name = 'League ID',value = i.league.id,inline=False)
+            embed.add_field(name = 'League Name',value = i.league.name,inline=False)
+            my_pages.append(Page(embeds=[embed]))
+        
+        paginator = Paginator(pages=my_pages)
+        await paginator.send(ctx)
 
 def setup(client):
     client.add_cog(Player_Cmds(client))
